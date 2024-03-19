@@ -1,11 +1,9 @@
 import AccountListItem from './AccountListItem';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Header from '../../ui-components/Header';
 import { Link } from 'react-router-dom';
-import { data } from '../../../data/accountData';
 
 function AccountList() {
-  const dispatch = useDispatch();
   const { isLoading } = useSelector((store) => store.accounts);
   const { accounts } = useSelector((store) => store.accounts);
 

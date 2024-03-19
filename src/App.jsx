@@ -3,7 +3,7 @@ import AccountDetailView from './features/AccountDetailView';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import AppLayout from './pages/AppLayout';
 import Transfer from './pages/Transfer';
-import { generateData } from './services/useAccountData';
+// import { generateData } from './services/useAccountData';
 import NewAccount from './pages/NewAccount';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';

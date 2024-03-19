@@ -1,7 +1,6 @@
-import { faker } from "@faker-js/faker";
-import { useDispatch } from "react-redux";
+import { faker } from '@faker-js/faker';
 
-const URL = "http://localhost:9000/accountData";
+const URL = 'http://localhost:9000/accountData';
 
 function generateData() {
   const data = {
@@ -25,7 +24,7 @@ function generateWithdrawals() {
     transactionId: faker.finance.accountNumber(),
     amount: faker.finance.amount(),
     date: faker.date.past(),
-    type: "withdrawal",
+    type: 'withdrawal',
     accountId: null,
   }));
   return w;
@@ -44,7 +43,7 @@ function generateDeposits() {
     transactionId: faker.finance.accountNumber(),
     amount: faker.finance.amount(),
     date: faker.date.past(),
-    type: "deposit",
+    type: 'deposit',
     accountId: null,
   }));
   return d;

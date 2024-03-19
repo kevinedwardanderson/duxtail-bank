@@ -1,12 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { setDashboardPeriod } from './dashboardSlice';
-import { filterTransactionsByTimeframe } from '../../utils/helpers';
 
 function Timeframe() {
   const { periods } = useSelector((store) => store.dashboard);
-  const { dashboardPeriod, dashboardAccount } = useSelector(
-    (store) => store.dashboard,
-  );
+  const { dashboardPeriod } = useSelector((store) => store.dashboard);
   const dispatch = useDispatch();
 
   function togglePeriod(p) {

@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Button from '../../ui-components/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { setDashboardFilter } from './dashboardSlice';

@@ -1,7 +1,5 @@
-import { useDispatch } from 'react-redux';
 import { data } from '../../data/accountData';
 import { portfolio } from '../features/accountList/accountsSlice';
-import { transactions } from '../features/accountList/accountsSlice';
 const { transactionsData } = data;
 
 import store from '../../src/store.js';

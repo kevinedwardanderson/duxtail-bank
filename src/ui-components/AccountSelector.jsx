@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import AccountSelectorItem from './AccountSelectorItem';
-import { useDispatch, useSelector } from 'react-redux';
 import { portfolio } from '../features/accountList/accountsSlice';
+import { useSelector } from 'react-redux';
 
 function AccountSelector({ feature, featureAcct = portfolio }) {
-  // const filter = useSelector((store) => store.dashboard.dashboardAccount);
   const [isExpanded, setIsExpanded] = useState(false);
   const { accounts } = useSelector((store) => store.accounts);
 

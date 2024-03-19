@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   fromAccountId: '',
@@ -20,7 +20,7 @@ const transfersSlice = createSlice({
       state.amount = action.payload;
     },
     resetTransfersState(state) {
-      state = initialState;
+      //state = initialState;
     },
   },
 });

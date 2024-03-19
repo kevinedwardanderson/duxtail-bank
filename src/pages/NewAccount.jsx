@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import AccountSelector from '../ui-components/AccountSelector';
 import { faker } from '@faker-js/faker';
 import { Link } from 'react-router-dom';
 
