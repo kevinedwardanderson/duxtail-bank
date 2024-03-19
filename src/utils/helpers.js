@@ -1,11 +1,6 @@
-import { data } from '../../data/accountData';
+import data from '../../data/accountData.json';
 import { portfolio } from '../features/accountList/accountsSlice';
-const { transactionsData } = data;
-
-import store from '../../src/store.js';
-const transactionsss = store.getState().accounts.transactions;
-
-console.log(transactionsss);
+const { transactionsData } = JSON.stringify(data);
 
 export function filterTransactionsByType(
   transactions = transactionsData,

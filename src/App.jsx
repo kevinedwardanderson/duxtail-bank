@@ -38,13 +38,6 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
-      {/* <div className=" grid grid-rows-12 w-dvw h-dvh">
-        <Header />
-        <AccountDetailView />
-        {/* <Dashboard />
-        <AccountList /> */}
-      {/* <Footer />
-      </div> */}
     </>
   );
 }

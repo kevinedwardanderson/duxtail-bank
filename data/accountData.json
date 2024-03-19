@@ -14,11 +14,6 @@
       "accountName": "Investment Account",
       "accountNumber": "59313771",
       "id": "a0ab"
-    },
-    {
-      "id": "9ac5",
-      "accountNumber": "05199067",
-      "accountName": "Personal Savings Account"
     }
   ],
   "transactionsData": [
@@ -3621,46 +3616,6 @@
       "type": "withdrawal",
       "accountId": "59313771",
       "id": "213e"
-    },
-    {
-      "id": "94e5",
-      "transactionId": "86095524-in",
-      "amount": "2000",
-      "date": "2024-03-19T18:04:52.859Z",
-      "type": "transferIn",
-      "fromAccountId": "99901439",
-      "accountId": "05199067",
-      "description": "transfer of 2000 from Savings Account to Personal Savings Account on Tue Mar 19 2024 14:04:52 GMT-0400 (Eastern Daylight Time)"
-    },
-    {
-      "id": "8cc9",
-      "transactionId": "86095524-out",
-      "amount": "2000",
-      "date": "2024-03-19T18:04:52.859Z",
-      "type": "transferOut",
-      "toAccountId": "05199067",
-      "accountId": "99901439",
-      "description": "transfer of 2000 from Savings Account to Personal Savings Account on Tue Mar 19 2024 14:04:52 GMT-0400 (Eastern Daylight Time)"
-    },
-    {
-      "id": "2c0f",
-      "transactionId": "8144357-in",
-      "amount": "250",
-      "date": "2024-03-19T19:11:30.236Z",
-      "type": "transferIn",
-      "fromAccountId": "99901439",
-      "accountId": "59313771",
-      "description": "transfer of 250 from Savings Account to Investment Account on Tue Mar 19 2024 15:11:30 GMT-0400 (Eastern Daylight Time)"
-    },
-    {
-      "id": "3f9a",
-      "transactionId": "8144357-out",
-      "amount": "250",
-      "date": "2024-03-19T19:11:30.236Z",
-      "type": "transferOut",
-      "toAccountId": "59313771",
-      "accountId": "99901439",
-      "description": "transfer of 250 from Savings Account to Investment Account on Tue Mar 19 2024 15:11:30 GMT-0400 (Eastern Daylight Time)"
     }
   ]
 }
