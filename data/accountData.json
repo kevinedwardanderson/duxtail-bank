@@ -3641,6 +3641,26 @@
       "toAccountId": "13114658",
       "accountId": "99901439",
       "description": "transfer of 2500 from Savings Account to Personal Savings Account on Tue Mar 19 2024 17:03:23 GMT-0400 (Eastern Daylight Time)"
+    },
+    {
+      "id": "2382",
+      "transactionId": "55740351-out",
+      "amount": "250",
+      "date": "2024-03-20T01:22:23.841Z",
+      "type": "transferOut",
+      "toAccountId": "13114658",
+      "accountId": "67801274",
+      "description": "transfer of 250 from Checking Account to Personal Savings Account on Tue Mar 19 2024 21:22:23 GMT-0400 (Eastern Daylight Time)"
+    },
+    {
+      "id": "227d",
+      "transactionId": "55740351-in",
+      "amount": "250",
+      "date": "2024-03-20T01:22:23.841Z",
+      "type": "transferIn",
+      "fromAccountId": "67801274",
+      "accountId": "13114658",
+      "description": "transfer of 250 from Checking Account to Personal Savings Account on Tue Mar 19 2024 21:22:23 GMT-0400 (Eastern Daylight Time)"
     }
   ]
 }
