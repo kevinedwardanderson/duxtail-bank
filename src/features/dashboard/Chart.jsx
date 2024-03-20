@@ -24,11 +24,24 @@ function Chart() {
   );
 
   console.log(dashboardFilter);
+  function convertFilterValue(filter) {
+    switch (filter) {
+      case 'Deposits':
+        return 'deposit';
+      case 'Expenses':
+        return 'withdrawal';
+      default:
+        return filter;
+    }
+  }
 
   let transactions = transactionsData;
   transactions = filterTransactionsByAcct(dashboardAccount);
   transactions = filterTransactionsByTimeframe(transactions, dashboardPeriod);
-  //   transactions = filterTransactionsByType(transactions, dashboardFilter);
+  transactions = filterTransactionsByType(
+    transactions,
+    convertFilterValue(dashboardFilter),
+  );
 
   const data2 = [
     {
@@ -68,7 +81,7 @@ function Chart() {
     },
     {
       transactionId: '32222689',
-      amount: '4217.12',
+      amount: '217.12',
       date: '2023-08-19T10:34:15.480Z',
       type: 'withdrawal',
       accountId: '59313771',
@@ -83,15 +96,15 @@ function Chart() {
   ];
 
   return (
-    <div className="absolute bottom-12 h-56 w-full">
-      <ResponsiveContainer width="100%" height="100%">
+    <div className="absolute bottom-6 h-1/2 w-full">
+      <ResponsiveContainer width="100%" height="50%">
         <LineChart data={transactions} height={500} width={500}>
           <Line
             dataKey="amount"
             type="monotone"
             stroke="rgb(16 185 129)"
             fill="rgb(16 185 129)"
-            strokeWidth={2}
+            strokeWidth={1}
           />
           <Tooltip />
         </LineChart>

@@ -6,7 +6,7 @@ function Footer() {
       <Link to="transfers">
         <img
           className="my-1 h-5 w-6"
-          src="src/assets/transfer.png"
+          src="../src/assets/transfer.png"
           alt="transfer"
         />
       </Link>

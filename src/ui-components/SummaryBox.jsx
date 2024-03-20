@@ -21,6 +21,8 @@ function BalanceBox() {
   function getSummary(transactions, filter) {
     const balanceTrans = filterTransactionsByAcct(dashboardAccount);
 
+    // Use switch to match dashboardFilter value to transaction type values
+
     switch (filter) {
       case 'Balance':
         return getTransactionsBalance(balanceTrans);

@@ -6,21 +6,10 @@ export function filterTransactionsByType(
   transactions = transactionsData,
   transType,
 ) {
-  let filter = 'hi';
-  switch (transType) {
-    case 'deposit':
-      filter = 'deposit';
-      console.log(filter);
-      break;
-    case 'Expenses':
-      filter = 'withdrawal';
-      break;
-    case 'Withdrawals':
-      filter = 'withdrawal';
-      break;
-  }
-  console.log(filter);
-  const filteredByType = transactions.filter((trans) => trans.type === filter);
+  if (transType === 'Balance' || transType === '+ / -') return transactions;
+  const filteredByType = transactions.filter(
+    (trans) => trans.type === transType,
+  );
   return filteredByType;
 }
 

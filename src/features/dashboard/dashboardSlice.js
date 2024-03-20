@@ -18,6 +18,7 @@ const dashboardSlice = createSlice({
       state.dashboardAccount = action.payload;
     },
     setDashboardFilter(state, action) {
+      console.log(action.payload);
       state.dashboardFilter = action.payload;
     },
     setDashboardPeriod(state, action) {
