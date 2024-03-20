@@ -30,7 +30,10 @@ function AccountSelectorItem({ account, feature }) {
   }
 
   return (
-    <li className="min-w-30 flex justify-between py-4" onClick={handleClick}>
+    <li
+      className="min-w-30 z-10 flex justify-between py-4"
+      onClick={handleClick}
+    >
       <div>
         {acctName} {acctNum}
       </div>
