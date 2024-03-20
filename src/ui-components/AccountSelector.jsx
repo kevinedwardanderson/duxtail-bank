@@ -14,12 +14,12 @@ function AccountSelector({ feature, featureAcct = portfolio }) {
   return (
     <>
       <ul
-        className="flex w-full flex-col
-      rounded-md 
-       bg-slate-100/75 px-4 
-        text-sm 
-       drop-shadow-sm
-       backdrop-blur-sm"
+        className="z-10 flex w-full
+      flex-col 
+       rounded-md bg-slate-100/75 
+        px-4 
+       text-sm
+       drop-shadow-sm backdrop-blur-sm"
         onClick={toggleExpand}
       >
         {!isExpanded ? (
