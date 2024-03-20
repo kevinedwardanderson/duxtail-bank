@@ -14,6 +14,11 @@
       "accountName": "Investment Account",
       "accountNumber": "59313771",
       "id": "a0ab"
+    },
+    {
+      "id": "8b1c",
+      "accountNumber": "13114658",
+      "accountName": "Personal Savings Account"
     }
   ],
   "transactionsData": [
@@ -3616,6 +3621,26 @@
       "type": "withdrawal",
       "accountId": "59313771",
       "id": "213e"
+    },
+    {
+      "id": "4850",
+      "transactionId": "97896011-in",
+      "amount": "2500",
+      "date": "2024-03-19T21:03:23.363Z",
+      "type": "transferIn",
+      "fromAccountId": "99901439",
+      "accountId": "13114658",
+      "description": "transfer of 2500 from Savings Account to Personal Savings Account on Tue Mar 19 2024 17:03:23 GMT-0400 (Eastern Daylight Time)"
+    },
+    {
+      "id": "e11e",
+      "transactionId": "97896011-out",
+      "amount": "2500",
+      "date": "2024-03-19T21:03:23.363Z",
+      "type": "transferOut",
+      "toAccountId": "13114658",
+      "accountId": "99901439",
+      "description": "transfer of 2500 from Savings Account to Personal Savings Account on Tue Mar 19 2024 17:03:23 GMT-0400 (Eastern Daylight Time)"
     }
   ]
 }

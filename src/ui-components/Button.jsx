@@ -17,15 +17,6 @@ function Button({ active, onClick, text, type, size, to }) {
     // type
     cancel: base + ' bg-red-400 text-slate-50',
   };
-  /*
-"mt-10 flex items-center justify-center rounded-md bg-red-400
-            px-8 py-3 text-slate-50"
-
-            `mt-10 flex items-center justify-center rounded-md px-8
-             py-3 text-slate-50 ${!amount ? 'bg-blue-100' : 'bg-blue-600'}`}
-
-
-  */
 
   if (type === 'cancel')
     return (

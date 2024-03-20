@@ -1,29 +1,44 @@
 import data from '../../data/accountData.json';
 import { portfolio } from '../features/accountList/accountsSlice';
-const { transactionsData } = JSON.stringify(data);
+const { transactionsData } = data;
 
 export function filterTransactionsByType(
   transactions = transactionsData,
   transType,
 ) {
-  const filteredByType = transactions.filter(
-    (trans) => trans.type === transType,
-  );
+  let filter = 'hi';
+  switch (transType) {
+    case 'deposit':
+      filter = 'deposit';
+      console.log(filter);
+      break;
+    case 'Expenses':
+      filter = 'withdrawal';
+      break;
+    case 'Withdrawals':
+      filter = 'withdrawal';
+      break;
+  }
+  console.log(filter);
+  const filteredByType = transactions.filter((trans) => trans.type === filter);
   return filteredByType;
 }
 
 export function filterTransactionsByAcct(account) {
   const filteredByAcct =
     account === portfolio
-      ? data.transactionsData
-      : data.transactionsData.filter(
+      ? transactionsData
+      : transactionsData.filter(
           (trans) => trans.accountId === account.accountNumber,
         );
 
   return filteredByAcct;
 }
 
-export function filterTransactionsByTimeframe(transactions, numDays) {
+export function filterTransactionsByTimeframe(
+  transactions = transactionsData,
+  numDays,
+) {
   const startDay = new Date();
   const prevDay = new Date(startDay - numDays * (1000 * 60 * 60 * 24));
   const filteredByTimeframe = transactions.filter((trans) => {
@@ -34,7 +49,7 @@ export function filterTransactionsByTimeframe(transactions, numDays) {
 }
 
 export function sumTransactionsByType(
-  transactions = data.transactionsData,
+  transactions = transactionsData,
   transType,
 ) {
   const transactionsByType = filterTransactionsByType(
@@ -46,12 +61,12 @@ export function sumTransactionsByType(
   return sumTransactions;
 }
 
-export function sumTransactions(transactions) {
+export function sumTransactions(transactions = transactionsData) {
   const sum = transactions.reduce((acc, cur) => acc + cur, 0);
   return sum;
 }
 
-export function getTransactionsBalance(transactions) {
+export function getTransactionsBalance(transactions = transactionsData) {
   const deposits = sumTransactionsByType(transactions, 'deposit');
   const transfersIn = sumTransactionsByType(transactions, 'transferIn');
   const transfersOut = sumTransactionsByType(transactions, 'transferOut');

@@ -5,7 +5,7 @@ import { fetchAccounts } from '../features/accountList/accountsSlice';
 function AppHeader() {
   const dispatch = useDispatch();
   return (
-    <header className="fixed top-0 z-[100] row-start-1 flex w-dvw items-center justify-between bg-black px-4 py-3 uppercase text-gray-50">
+    <header className="fixed top-0 z-[100] row-start-1 flex w-full items-center justify-between bg-black px-4 py-3 uppercase text-gray-50">
       <Link to="/">
         <img
           src="src/assets/redux-logo.png"

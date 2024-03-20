@@ -7,7 +7,7 @@ import {
   sumTransactionsByType,
 } from '../utils/helpers.js';
 
-import { data } from '../../data/accountData.js';
+import data from '../../data/accountData.json';
 
 function BalanceBox() {
   const { dashboardAccount, dashboardFilter, dashboardPeriod } = useSelector(
