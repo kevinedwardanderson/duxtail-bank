@@ -10,21 +10,23 @@ function AccountList() {
   if (isLoading) return <p>...Loading</p>;
 
   return (
-    <div className="row-start-8 row-end-13  overflow-scroll bg-slate-50">
-      <div className="t-0 absolute z-10 w-full shadow-md">
+    <>
+      {/* <div className="relative w-full  bg-slate-50"> */}
+      <div className="relative top-0 z-10 w-full shadow-md">
         <Header type={'section'}>
           <p>Account</p>
           <p>Balance</p>
         </Header>
       </div>
-      <div className="relative top-12 overflow-scroll">
-        <ul className="flex flex-col  divide-y-2 divide-slate-200  text-xs uppercase">
+      {/* <div className="relative top-12"> */}
+      <div className="absolute top-12 h-[250px] w-full overflow-scroll ">
+        <ul className="flex w-full  flex-col divide-y-2 divide-slate-200 text-xs uppercase">
           {accounts.map((acct) => (
             <AccountListItem account={acct} key={acct.accountNumber} />
           ))}
-          {/* {accounts.map((acct) => (
+          {accounts.map((acct) => (
             <AccountListItem account={acct} key={acct.accountNumber} />
-          ))} */}
+          ))}
         </ul>
 
         <Link to="new-account">
@@ -33,7 +35,9 @@ function AccountList() {
           </div>
         </Link>
       </div>
-    </div>
+      {/* </div> */}
+      {/* </div> */}
+    </>
   );
 }
 

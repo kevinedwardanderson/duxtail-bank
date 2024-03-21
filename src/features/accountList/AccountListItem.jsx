@@ -25,7 +25,7 @@ function AccountListItem({ account }) {
     <Link to="account-details">
       <li
         onClick={() => handleClick(account)}
-        className="flex justify-between bg-gray-50 px-6 py-5"
+        className="flex justify-between bg-slate-50 px-6 py-5"
       >
         <span>
           {accountName.length > 16 ? accountName.slice(0, 16) : accountName} |

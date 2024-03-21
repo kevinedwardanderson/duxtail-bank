@@ -1,5 +1,10 @@
 import data from '../../data/accountData.json';
 import { portfolio } from '../features/accountList/accountsSlice';
+import {
+  dashboardAccount,
+  dashboardFilter,
+  dashboardPeriod,
+} from '../features/dashboard/dashboardSlice';
 const { transactionsData } = data;
 
 export function filterTransactionsByType(
@@ -24,15 +29,42 @@ export function filterTransactionsByAcct(account) {
   return filteredByAcct;
 }
 
+export function dvFilterTransactionsByAcct(transactions, account) {
+  const filteredByAcct =
+    account === portfolio
+      ? transactionsData
+      : transactions.filter(
+          (trans) => trans.accountId === account.accountNumber,
+        );
+
+  return filteredByAcct;
+}
+
+export function getTransactionsByDate(transactions, date) {
+  const transactionsByDate = transactions.filter((trans) => {
+    const transDateISO = new Date(trans.date).toISOString();
+    const dateISO = new Date(date).toISOString();
+    return transDateISO.slice(0, 10) === dateISO.slice(0, 10);
+  });
+  return transactionsByDate;
+}
+
+export function sumTransactionsByDate(transactions, date) {
+  const sumByDate = getTransactionsBalance(
+    getTransactionsByDate(transactions, date),
+  );
+  return sumByDate;
+}
+
 export function filterTransactionsByTimeframe(
   transactions = transactionsData,
   numDays,
 ) {
-  const startDay = new Date();
-  const prevDay = new Date(startDay - numDays * (1000 * 60 * 60 * 24));
+  const currentDay = new Date();
+  const prevDay = new Date(currentDay - numDays * (1000 * 60 * 60 * 24));
   const filteredByTimeframe = transactions.filter((trans) => {
     let transDate = Date.parse(trans.date);
-    if (transDate <= startDay && transDate >= prevDay) return trans;
+    if (transDate <= currentDay && transDate >= prevDay) return trans;
   });
   return filteredByTimeframe;
 }
@@ -66,6 +98,41 @@ export function getTransactionsBalance(transactions = transactionsData) {
   return balance;
 }
 
+export function getDailySummary(transactions, numDays) {
+  const dailySummary = [];
+  const currentDay = new Date();
+  const prevDay = new Date(currentDay - numDays * (1000 * 60 * 60 * 24));
+  let runningNet = 0;
+
+  for (
+    let i = prevDay;
+    i < currentDay;
+    i = new Date(Date.parse(i) + 1000 * 60 * 60 * 24)
+  ) {
+    runningNet += sumTransactionsByDate(transactions, i);
+    dailySummary.push({
+      date: i,
+      sum: sumTransactionsByDate(transactions, i),
+      balance: runningNet,
+    });
+  }
+  return dailySummary;
+}
+
+// export function getRunningBalance(transactions, numDays) {
+//   const runningBalance = [];
+//   let runningNet = 0;
+//   let dailyNets = getDailyNet(transactions, numDays);
+
+// for (let j = 0; j < 10; j++) {
+//   console.log(dailyNets[j].sum);
+// runningNet = runningNet + dailyNets[j].sum;
+// runningBalance.push({ date: dailyNets[j].date, balance: runningNet });
+// }
+//   console.log(dailyNets);
+//   console.log(runningBalance);
+// }
+
 export function getNetWorth(accounts) {
   const balances = accounts.map((account) => getTransactionsBalance(account));
   return balances.reduce((acc, cur) => acc + cur, 0);
@@ -92,3 +159,30 @@ export function formatDate(date) {
 
   return dateObj;
 }
+
+// const transactions = transactionsData;
+// const filterObject = {
+//   account: dashboardAccount,
+//   filter: dashboardFilter,
+//   period: dashboardPeriod,
+// };
+
+// export function dashboardView(transactions, filterObj) {
+//   let viewTransactions = filterTransactionsByAcct(
+//     transactions,
+//     filterObj.account,
+//   );
+//   viewTransactions = filterTransactionsByTimeframe(
+//     viewTransactions,
+//     filterObj.period,
+//   );
+//   // viewTransactions = filterTransactionsByType(
+//   //   viewTransactions,
+//   //   filterObj.filter,
+//   // );
+//   console.log(filterObj.account);
+//   console.log(filterObj.period);
+//   console.log(viewTransactions);
+// }
+
+// dashboardView(transactions, filterObject);

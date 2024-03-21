@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { faker } from '@faker-js/faker';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 function NewAccount() {
   const [firstName, setFirstName] = useState('');
@@ -8,6 +9,7 @@ function NewAccount() {
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
   const [accountType, setAccountType] = useState('Checking');
+  const navigate = useNavigate();
 
   const inputStyle = 'w-2/3 rounded-md bg-slate-100 py-4 pl-4';
 
@@ -34,6 +36,8 @@ function NewAccount() {
       accountName: `Personal ${accountType} Account`,
     };
     createNewAccount(URL, newAccount);
+    toast.success('account created');
+    navigate('/');
   }
 
   return (

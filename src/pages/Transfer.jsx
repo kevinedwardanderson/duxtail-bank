@@ -5,11 +5,12 @@ import {
   setFromAccount,
   setToAccount,
 } from '../features/transfers/transfersSlice';
-import { postTransaction } from '../features/accountList/accountsSlice';
+import { postTransaction } from '../features/transactions/transactionsSlice';
 
 import AccountSelector from '../ui-components/AccountSelector';
 import Button from '../ui-components/Button';
 import Input from '../ui-components/Input';
+import toast from 'react-hot-toast';
 
 function Transfer() {
   const { toAccountId } = useSelector((store) => store.transfers);
@@ -56,6 +57,7 @@ function Transfer() {
     dispatch(postTransaction(transferIn));
     dispatch(postTransaction(transferOut));
     resetTransfer();
+    toast.success('transfer completed');
   }
 
   return (
@@ -89,7 +91,7 @@ function Transfer() {
             text={'Cancel'}
             type={'cancel'}
             size={'large'}
-            to={'/'}
+            to={-1}
             active={'Transfer now'}
             onClick={() => handleTransfer(transaction)}
           ></Button>

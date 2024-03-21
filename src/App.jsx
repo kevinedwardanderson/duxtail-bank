@@ -7,10 +7,10 @@ import Transfer from './pages/Transfer';
 import NewAccount from './pages/NewAccount';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import {
-  fetchAccounts,
-  fetchTransactions,
-} from './features/accountList/accountsSlice';
+import { fetchAccounts } from './features/accountList/accountsSlice';
+import { fetchTransactions } from './features/transactions/transactionsSlice';
+import { Toaster } from 'react-hot-toast';
+import TransactionDetailsPage from './pages/TransactionDetailsPage';
 
 // generateData();
 
@@ -34,10 +34,34 @@ function App() {
             <Route index element={<Dashboard />} />
             <Route path="account-details" element={<AccountDetailView />} />
             <Route path="transfers" element={<Transfer />} />
+            <Route
+              path="transaction-details/:id"
+              element={<TransactionDetailsPage />}
+            />
             <Route path="new-account" element={<NewAccount />} />
           </Route>
         </Routes>
       </BrowserRouter>
+      <Toaster
+        position="top-center"
+        gutter={12}
+        containerStyle={{ margin: '8px' }}
+        toastOptions={{
+          success: {
+            duration: 8000,
+          },
+          error: {
+            duration: 5000,
+          },
+          style: {
+            top: '5rem',
+            fontSize: '16px',
+            maxWidth: '500px',
+            padding: '16px 24px',
+            backgroundColor: 'var(--color-grey-700)',
+          },
+        }}
+      />
     </>
   );
 }

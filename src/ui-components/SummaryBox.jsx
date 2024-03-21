@@ -52,7 +52,7 @@ function BalanceBox() {
   const dashboardAccountSummary = getSummary(transactions, dashboardFilter);
 
   return (
-    <div className="balance-box absolute right-4 top-20 rounded-md bg-gray-100/75 px-3 py-2 text-[24px] drop-shadow-sm backdrop-blur-sm">
+    <div className="absolute right-4 top-20 rounded-md bg-slate-100/75 px-3 py-2 text-[24px] drop-shadow-sm backdrop-blur-sm">
       <span>{formatCurrency(dashboardAccountSummary)}</span>
     </div>
   );

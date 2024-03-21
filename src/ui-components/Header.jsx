@@ -1,6 +1,6 @@
 function Header({ children, type }) {
   const base =
-    ' flex justify-between items-center px-6 py-4 text-[10px] font-bold uppercase ';
+    '  absolute w-full flex justify-between items-center px-6 py-4 text-[10px] font-bold uppercase ';
 
   const styles = {
     page: base + ' bg-slate-800 text-slate-50 ',

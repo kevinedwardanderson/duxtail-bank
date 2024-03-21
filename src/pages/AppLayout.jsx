@@ -4,9 +4,11 @@ import Main from '../layout-components/Main';
 
 function AppLayout() {
   return (
-    <div className="grid h-dvh w-dvw grid-rows-12">
+    <div className="h-dvh w-dvw">
       <AppHeader />
-      <Main />
+      <main className="relative">
+        <Main />
+      </main>
       <Footer />
     </div>
   );

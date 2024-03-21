@@ -1,29 +1,40 @@
 import {
   Area,
   AreaChart,
-  Line,
-  LineChart,
+  ReferenceLine,
   ResponsiveContainer,
   Tooltip,
 } from 'recharts';
 
 import data from '../../../data/accountData.json';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
-  filterTransactionsByAcct,
+  dvFilterTransactionsByAcct,
   filterTransactionsByTimeframe,
   filterTransactionsByType,
+  formatCurrency,
+  getDailySummary,
 } from '../../utils/helpers';
+import {
+  setDashboardTransactions,
+  setDashboardViewTransactions,
+} from './dashboardSlice';
+import { useEffect } from 'react';
 
 const { transactionsData } = data;
-console.log(transactionsData);
 
 function Chart() {
-  const { dashboardAccount, dashboardFilter, dashboardPeriod } = useSelector(
-    (store) => store.dashboard,
-  );
+  const {
+    dashboardAccount,
+    dashboardFilter,
+    dashboardPeriod,
+    // dashboardViewTransactions,
+  } = useSelector((store) => store.dashboard);
 
-  console.log(dashboardFilter);
+  const dispatch = useDispatch();
+
+  useEffect(() => {}, []);
+
   function convertFilterValue(filter) {
     switch (filter) {
       case 'Deposits':
@@ -35,82 +46,107 @@ function Chart() {
     }
   }
 
-  let transactions = transactionsData;
-  transactions = filterTransactionsByAcct(dashboardAccount);
-  transactions = filterTransactionsByTimeframe(transactions, dashboardPeriod);
-  transactions = filterTransactionsByType(
+  // Getting Chart data:
+  // 1. Transactions start as the entire array of transaction objects
+  const transactions = transactionsData;
+
+  // 2. Using dasboard State to create a "filter" object which contains all the information for slicing the transactions data to fit the user input
+  const filterObject = {
+    account: dashboardAccount,
+    filter: dashboardFilter,
+    period: dashboardPeriod,
+  };
+
+  // 3. Pass transactionsData and filterObject through each filter function to arrive at chart data
+
+  function getDashboardTransactions(transactions, filterObj) {
+    let viewTransactions = dvFilterTransactionsByAcct(
+      transactions,
+      filterObj.account,
+    );
+    viewTransactions = filterTransactionsByTimeframe(
+      viewTransactions,
+      filterObj.period,
+    );
+    viewTransactions = filterTransactionsByType(
+      viewTransactions,
+      convertFilterValue(filterObj.filter),
+    );
+
+    // dispatch(setDashboardViewTransactions(viewTransactions));
+    return viewTransactions;
+  }
+
+  const dashboardTransactions = getDashboardTransactions(
     transactions,
-    convertFilterValue(dashboardFilter),
+    filterObject,
   );
 
-  const data2 = [
-    {
-      transactionId: '00348423',
-      amount: '252.86',
-      date: '2023-08-16T00:38:04.472Z',
-      type: 'withdrawal',
-      accountId: '59313771',
-    },
-    {
-      transactionId: '65977610',
-      amount: '940.41',
-      date: '2023-07-09T09:28:09.252Z',
-      type: 'withdrawal',
-      accountId: '59313771',
-    },
-    {
-      transactionId: '96926168',
-      amount: '560.33',
-      date: '2023-07-02T19:12:38.471Z',
-      type: 'withdrawal',
-      accountId: '59313771',
-    },
-    {
-      transactionId: '94281976',
-      amount: '851.78',
-      date: '2023-09-14T03:20:29.451Z',
-      type: 'withdrawal',
-      accountId: '59313771',
-    },
-    {
-      transactionId: '17339227',
-      amount: '610.32',
-      date: '2023-04-02T20:38:14.682Z',
-      type: 'withdrawal',
-      accountId: '59313771',
-    },
-    {
-      transactionId: '32222689',
-      amount: '217.12',
-      date: '2023-08-19T10:34:15.480Z',
-      type: 'withdrawal',
-      accountId: '59313771',
-    },
-    {
-      transactionId: '32601490',
-      amount: '834.34',
-      date: '2023-06-11T20:40:37.170Z',
-      type: 'withdrawal',
-      accountId: '59313771',
-    },
-  ];
+  const chartData = getDailySummary(dashboardTransactions, dashboardPeriod);
+  let dataKey = 'balance';
+
+  const summary = chartData[chartData.length - 1].balance;
+  console.log(summary);
+
+  function CustomTooltip({ payload, label, active }) {
+    if (active) {
+      return (
+        <div className="custom-tooltip rounded-md bg-slate-100 px-3 py-2">
+          <p className="label">{`${formatCurrency(payload[0].value)}`}</p>
+        </div>
+      );
+    }
+
+    return null;
+  }
 
   return (
-    <div className="absolute bottom-6 h-1/2 w-full">
+    <div className="fixed bottom-64  h-1/2 w-full">
       <ResponsiveContainer width="100%" height="50%">
-        <LineChart data={transactions} height={500} width={500}>
-          <Line
-            dataKey="amount"
+        <AreaChart data={chartData} height={1000} width={500}>
+          <ReferenceLine y={0} stroke="lightgray" />
+          <Area
+            dataKey={dataKey}
             type="monotone"
             stroke="rgb(16 185 129)"
             fill="rgb(16 185 129)"
-            strokeWidth={1}
           />
-          <Tooltip />
-        </LineChart>
+          <Tooltip content={<CustomTooltip />} />
+        </AreaChart>
       </ResponsiveContainer>
     </div>
   );
 }
 
 export default Chart;
+
+// const testData = [
+//   {
+//     transactionId: '00348423',
+//     amount: '252.86',
+//     date: '2023-08-16T00:38:04.472Z',
+//     type: 'withdrawal',
+//     accountId: '59313771',
+//   },
+//   {
+//     transactionId: '65977610',
+//     amount: '940.41',
+//     date: '2023-07-09T09:28:09.252Z',
+//     type: 'withdrawal',
+//     accountId: '59313771',
+//   },
+//   {
+//     transactionId: '96926168',
+//     amount: '560.33',
+//     date: '2023-07-02T19:12:38.471Z',
+//     type: 'withdrawal',
+//     accountId: '59313771',
+//   },
+//   {
+//     transactionId: '94281976',
+//     amount: '851.78',
+//     date: '2023-09-14T03:20:29.451Z',
+//     type: 'withdrawal',
+//     accountId: '59313771',
+//   },
+// ];
