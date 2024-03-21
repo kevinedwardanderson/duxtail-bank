@@ -7,11 +7,7 @@ function AppHeader() {
   return (
     <header className="fixed top-0 z-[100] row-start-1 flex w-full items-center justify-between bg-black px-4 py-3 uppercase text-gray-50">
       <Link to="/">
-        <img
-          src="../public/redux-logo.png"
-          alt="redux logo"
-          className="h-6"
-        ></img>
+        <img src="/redux-logo.png" alt="redux logo" className="h-6"></img>
       </Link>
       <span className="text-sm">
         Du<span className="text-xl font-extrabold text-emerald-600">X</span>
