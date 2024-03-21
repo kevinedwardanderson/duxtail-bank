@@ -94,7 +94,7 @@ function NewAccount() {
           <option>Savings</option>
         </select>
       </div>
-      <div className="absolute top-[30rem] flex min-w-[21rem] justify-between">
+      <div className=" top-[30rem] flex justify-between">
         <Link to="/">
           <button
             className="mt-10 flex items-center justify-center rounded-md bg-red-400

@@ -20,7 +20,7 @@ function AccountList() {
       </div>
       {/* <div className="relative top-12"> */}
       <div className="absolute top-12 h-[250px] w-full overflow-scroll ">
-        <ul className="flex w-full  flex-col divide-y-2 divide-slate-200 text-xs uppercase">
+        <ul className="absilute top-0 flex w-full  flex-col divide-y-2 divide-slate-200 text-xs uppercase">
           {accounts.map((acct) => (
             <AccountListItem account={acct} key={acct.accountNumber} />
           ))}

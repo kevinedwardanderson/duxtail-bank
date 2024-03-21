@@ -44,17 +44,16 @@ function App() {
       </BrowserRouter>
       <Toaster
         position="top-center"
-        gutter={12}
-        containerStyle={{ margin: '8px' }}
+        gutter={20}
+        containerStyle={{ margin: '3rem' }}
         toastOptions={{
           success: {
-            duration: 8000,
+            duration: 3000,
           },
           error: {
             duration: 5000,
           },
           style: {
-            top: '5rem',
             fontSize: '16px',
             maxWidth: '500px',
             padding: '16px 24px',
